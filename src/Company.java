@@ -1,3 +1,5 @@
+import taxes.TaxSystem;
+
 public class Company {
     private String title;
     private int debit;
@@ -15,5 +17,19 @@ public class Company {
         } else {
             credit -= amount;
         }
+    }
+
+    public void payTaxes() {
+        int tax = taxSystem.calcTaxFor(debit, credit);
+
+        System.out.printf("Компания %s уплатила налог в размере: %d руб.\n",
+                title, tax);
+
+        debit = 0;
+        credit = 0;
+    }
+
+    public void setTaxSystem(TaxSystem taxSystem) {
+        this.taxSystem = taxSystem;
     }
 }
